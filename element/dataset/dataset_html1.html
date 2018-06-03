@@ -1,0 +1,30 @@
+
+<a href="http://quanxue.cn/CT_NanHuaiJin/ZongJing/ZongJing03.html" data-id=1231 id='node1'>如幻似真情何堪</a>
+
+<script type="text/javascript">
+
+class DataManager{
+	constructor({id='none'} = {}) {
+		this.id=id;
+		let that = this;
+		this.initElement();
+		this.addEvent('click', function(e){
+			e.preventDefault();
+			alert(this.node.dataset.id);
+			open(this.node.href);
+		}.bind(this))
+	}
+
+	initElement() {
+		if(this.id != 'none') {
+			this.node = document.getElementById(this.id);
+		}
+	}
+
+	addEvent(event, func) {
+		this.node.addEventListener(event, func);
+	}
+}
+
+var node1 = new DataManager({id:'node1'});
+</script>
