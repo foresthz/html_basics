@@ -1,0 +1,38 @@
+<select name="" id="comp1">
+    <option value="沙弥0">沙弥</option>
+    <option value="具足戒1">具足戒</option>
+    <option value="清净护持2" selected>清净护持</option>
+    <option value="无所毁犯3">无所毁犯</option>
+</select>
+
+select>option*3+(optgroup>option*2)*2
+
+<hr>
+
+<select name="" id="multi_select" multiple size=10>
+    <option value="">具缘</option>
+    <option value="">诃欲</option>
+    <option value="">弃盖</option>
+    <optgroup label="名词A">
+        <option value="">精进勇猛</option>
+        <option value="" selected>无上佛道</option>
+    </optgroup>
+    <optgroup label="名词B">
+        <option value="">其心坚固</option>
+        <option value="">犹如金刚</option>
+    </optgroup>
+</select>
+
+<style>
+    #multi_select {
+        width: 200px;
+    }
+</style>
+
+<script>
+    let comp1 = document.querySelector('#comp1');
+    comp1.addEventListener('change', function (e) {
+        // alert(e.target.selectedOptions[0].innerText)
+        alert(e.target.selectedOptions[0].value)
+    });
+</script>

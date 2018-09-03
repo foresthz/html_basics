@@ -1,0 +1,98 @@
+<input type="text" id="task_input">
+<button id="btn_submit">完成一个接口</button>
+
+
+<div id="done_work">
+
+</div>
+
+<script>
+    class StoreManager {
+        constructor() {
+            let date = new Date();
+            this.date_string = `${date.getMonth()+1}-${date.getDate()}`;
+        }
+        store(msg) {
+            if (localStorage.hasOwnProperty('task_date')) {
+                let obj = JSON.parse(localStorage['task_date']);
+                if (obj.hasOwnProperty(this.date_string)) {
+                    let day_taskinfo = obj[this.date_string];
+                    let keys = Object.keys(day_taskinfo).map(function (item) {
+                        return parseInt(item);
+                    }).sort();
+                    day_taskinfo[keys[keys.length - 1] + 1] = msg;
+
+                } else {
+                    obj[this.date_string] = {
+                        1: msg
+                    };
+                }
+                localStorage['task_date'] = JSON.stringify(obj);
+
+            } else {
+                localStorage['task_date'] = JSON.stringify({
+                    [this.date_string]: {
+                        1: msg
+                    }
+                });
+            }
+        }
+
+        read_to_div(read_id) {
+            let workNode = document.getElementById(read_id);
+            if (localStorage.hasOwnProperty('task_date')) {
+                let obj = JSON.parse(localStorage['task_date']);
+                if (obj.hasOwnProperty(this.date_string)) {
+                    let day_taskinfo = obj[this.date_string];
+                    let keys = Object.keys(day_taskinfo).map(function (item) {
+                        return parseInt(item);
+                    }).sort();
+                    keys.forEach(function (key) {
+                        let commentNode = document.createElement('div');
+                        commentNode.innerText = day_taskinfo[String(key)];
+                        commentNode.classList.add('item');
+                        workNode.insertBefore(commentNode, workNode.firstChild);
+                    });
+                }
+            }
+        }
+    }
+
+
+
+    let store_manager = new StoreManager();
+
+    store_manager.read_to_div('done_work');
+
+    let taskNode = document.getElementById('task_input');
+    let btn_submit = document.getElementById('btn_submit');
+    let workNode = document.getElementById('done_work');
+    btn_submit.addEventListener('click', function (e) {
+        let input_value = taskNode.value;
+        // debugger;
+        let commentNode = document.createElement('div');
+        commentNode.innerText = input_value;
+        commentNode.classList.add('item');
+        workNode.insertBefore(commentNode, workNode.firstChild);
+
+        store_manager.store(input_value);
+    });
+</script>
+
+<style>
+    #done_work {
+        border: dashed 1px pink;
+        min-height: 100px;
+        margin: 10 0;
+        padding: 2px 10px;
+    }
+
+    #task_input {
+        width: 600px;
+    }
+
+    .item {
+        border: blue 1px solid;
+        margin: 5 0;
+    }
+</style>

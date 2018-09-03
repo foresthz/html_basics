@@ -1,0 +1,34 @@
+
+
+<title>数字叠加</title>
+
+
+<button id="btn_increase">+</button>
+<span id="span_value">0</span>
+<button id="btn_decrease">-</button>
+
+<style>
+    button {
+        width: 60px;
+    }
+</style>
+
+<script>
+    window.addEventListener('DOMContentLoaded', function(){
+        document.getElementById('span_value').innerText = localStorage['api'];
+    });
+    document.getElementById('btn_increase').addEventListener('click',function(e){
+        let spanNode = document.getElementById('span_value');
+        let spanValue = spanNode.innerText;
+        let result = parseInt(spanValue)+1;
+        localStorage.api = result;
+        spanNode.innerText = localStorage['api'];
+        // alert(parseInt(spanValue)+1);
+    });
+    document.querySelector('#btn_decrease').addEventListener('click', function(e){
+        let spanNode = document.getElementById('span_value');
+        let result = parseInt(spanNode.innerText)-1;
+        localStorage['api']=result;
+        spanNode.innerText = localStorage['api'];
+    })
+</script>
