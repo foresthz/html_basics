@@ -1,0 +1,31 @@
+
+
+<img src="data/e0.jpg" id="e0" alt="" srcset="">
+
+<img src="data/foot1.jpg" id="foot1" alt="" srcset="">
+
+<img src="data/girl.jpg" alt="" srcset="" id="girl">
+<img src="data/girl.jpg" alt="" srcset="" id="girl2">
+
+<script>
+    let img1 = document.getElementById('e0');
+    console.info(img1);
+    let foot1 = document.getElementById('foot1');
+
+    let girl = document.getElementById('girl');
+    let girl2 = document.getElementById('girl2');
+    girl2.onload = function() {
+        console.info(`size of girl2(onload后输出) (${girl2.width}, ${girl2.height})`);
+    }
+    console.info(`size of girl2(直接输出) (${girl2.width}, ${girl2.height})`);
+
+    
+
+</script>
+
+<style>
+    #girl2{
+        width:20%;
+        height: 20%;
+    }
+</style>
