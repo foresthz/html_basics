@@ -1,0 +1,84 @@
+<title>
+
+    覆盖层 Lab1</title>
+
+
+.container1>(.content1+.shadow1+.pop1)
+
+<div class="container1">
+    <div class="content1">
+        生长富贵丛中的，嗜欲如猛火、权势似烈焰。若不带些清冷气味，其火焰不至焚人，必将自焚。 人心一真，便霜可飞、城可陨、金石可贯。若伪妄之人，形骸徒具，真宰已亡。对人则面目可憎，独居则形影自愧。
+        文章做到极处，无有他奇，只是恰好；人品做到极处，无有他异，只是本然。
+        以幻迹言，无论功名富贵，即肢体亦属委；以真境言，无论父母兄弟，即万物皆吾一体。人能看得破，认得真，才可以任天下之负担，亦可脱世间之缰锁。
+        爽口之味，皆烂肠腐骨之药，五分便无殃；快心之事，悉败身散德之媒，五分便无悔。
+        不责人小过，不发人阴私，不念人旧恶，三者可以养德，亦可以远害。
+    </div>
+    <div class="shadow1"></div>
+    <div class="pop1">
+        <button id="btn1">x</button>
+        <div class="comment11_inside">
+            老来疾病都是壮时招得；衰时罪孽都是盛时作得。故持盈履满，君子尤兢兢焉。
+        </div>
+        <div class="comment12_inside">
+            市私恩不如扶公议，结新知不如敦旧好，立荣名不如种阴得，尚奇节不如谨庸行。
+        </div>
+        <button id="btn_rise">文字上升</button>
+    </div>
+</div>
+
+<script>
+let btn1 = document.querySelector('#btn1');
+btn1.addEventListener('click', function(e){
+    alert('clicked');
+});
+btn_rise.addEventListener('click', function(e){
+    let comment12_inside = document.querySelector('.comment12_inside');
+    let bottom = comment12_inside.style.bottom;
+    if(bottom=="") {
+        comment12_inside.style.bottom = window.getComputedStyle(comment12_inside).bottom;
+    } else {
+        let new_pos = Number(bottom.match(/(\d+)/)[0])+10;
+        if(new_pos > 300) {
+            new_pos = 40;
+        }
+        comment12_inside.style.bottom =new_pos +"px";
+    }
+});
+</script>
+
+<style>
+    .shadow1 {
+        background: rgba(240, 173, 220, 0.8);
+        position: absolute;
+        top: 0px;
+        margin: 0px;
+        z-index: 10000;
+        width: 100%;
+        height: 100%;
+    }
+    .pop1 {
+        position: absolute;
+        z-index: 10001;
+        width: 50%;
+        background: greenyellow;
+        left: 25%;
+        height: 50%;
+    }
+    #btn1{
+        position: absolute;
+        right: -10px;
+        top:-10px;
+        border-radius: 2em;
+        background: yellow;
+    }
+    #btn_rise{
+        position: absolute;
+        bottom: 3px;
+        left: 20%;
+    }
+    .comment12_inside{
+        position: absolute;
+        bottom: 40px;
+        left: 2em;
+    }
+</style>

@@ -1,0 +1,28 @@
+
+
+<img src="" alt="" id="img_placeholder1">
+<script>
+    let img_array = [
+        '../data/e0.jpg',
+        '../data/e1.jpg',
+        '../data/foot1.jpg',
+        '../data/girl.jpg'
+    ];
+
+    let img_placeholder1 = document.getElementById('img_placeholder1');
+    img_placeholder1.src = img_array[2];
+    setInterval(function(){
+        let index = Math.floor(Math.random() * img_array.length);
+        if(img_placeholder1.src == img_array[index]) {
+            if(index-1>=0) {
+                img_placeholder1.src == img_array[index-1];
+            } else {
+                img_placeholder1.src == img_array[index + 1];
+            }
+        } else {
+            img_placeholder1.src = img_array[index];
+        }
+        console.info('change image ...', index);
+
+    }, 4000);
+</script>

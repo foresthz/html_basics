@@ -1,0 +1,49 @@
+<head>
+    <meta charset="utf-8">
+    <title>float布局</title>
+</head>
+
+<details>
+    你好
+    <summary>
+        Hello <span style="color:red;">World</span>
+    </summary>
+</details>
+
+<details>
+    <summary>
+        <span>摘要</span>
+    </summary>
+    <div class="container">
+        <div class="left">
+            左侧
+        </div>
+        <div class="center">
+            倚高才而玩世，背后须防射影之虫
+        </div>
+        <div class="right">
+            右侧
+        </div>
+    </div>
+</details>
+
+<style>
+.container{
+    background: yellow;
+    min-height: 150px;
+}
+.left {
+    width: 10em;
+    float:left;
+    background: pink;
+    min-height: 150px;
+}
+.center{
+    float: left;
+}
+.right{
+    float: right;
+    min-height: 150px;
+    background: linear-gradient(90deg, lightgreen 20%, pink);
+}
+</style>
