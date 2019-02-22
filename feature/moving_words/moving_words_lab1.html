@@ -1,0 +1,71 @@
+<div id="container1">
+    <div id="node1">哈哈哈</div>
+</div>
+
+<style>
+    #node1 {
+        background: yellow;
+    }
+</style>
+
+<script>
+    let node1 = document.querySelector('#node1');
+    node1.style = "display:inline-block;position:relative;";
+    let bodyWidth = document.body.clientWidth;
+
+    let step = 0;
+    let rect = node1.getBoundingClientRect();
+
+    setInterval(function () {
+
+
+        if (step + rect.width > bodyWidth) {
+            step = 0;
+        } else {
+            node1.style.left = `${step}px`;
+            step += 5;
+        }
+        // getComputedStyle(node1);
+    }, 200);
+
+    function add_moving_words(id, words, config={}) {
+        let node = document.createElement('div');
+        node.innerText = words;
+
+        document.body.appendChild(node);
+
+        node.style = "display:inline-block;position:absolute;background:yellow;";
+        if(config.bottom) {
+            node.style.bottom = `${config.bottom}px`;
+        }
+
+
+        let step = 0;
+        let rect = node.getBoundingClientRect();
+
+        let interval = config.interval?config.interval:200;
+        let step_pixel = config.step_pixel?config.step_pixel:50;
+        let max_repeat = config.max_repeat?config.max_repeat:0;
+
+        let count = 0;
+        let left = 0;
+
+        let intervalID = setInterval(function () {
+            console.info(`id: ${id}, step: ${left}`);
+            if (left + rect.width > bodyWidth) {
+                left = 0;
+            } else {
+                node.style.left = `${left}px`;
+                left += step_pixel;
+            }
+            count ++;
+            if(max_repeat>0 && count>max_repeat) {
+                clearInterval(intervalID);
+                setTimeout(() => {
+                    node.remove();
+                }, 2000);
+            }
+        }, interval);
+
+    }
+</script>
